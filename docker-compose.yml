@@ -1,0 +1,10 @@
+# aqui não mexe em nada
+version: '3.8'
+
+services:
+  mic1:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app:/app
