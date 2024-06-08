@@ -4,6 +4,7 @@ version: '3.8'
 services:
   mic1:
     build: .
+    # aqui você pode ter que alterar a porta baseado no que você configurou no app.py e no dockerfile
     ports:
       - "5000:5000"
     volumes:
