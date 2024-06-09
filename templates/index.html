@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MIC-1 Simulator</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>MIC-1 Simulator</h1>
+    <div class="input-container">
+        <div class="input-field">
+            <label for="amux">AMUX</label><br>
+            <input type="number" id="amux" name="amux" min="0" max="1" value="0">
+        </div>
+        <div class="input-field">
+            <label for="cond">COND</label><br>
+            <input type="number" id="cond" name="cond" min="0" max="3" value="0">
+        </div>
+        <div class="input-field">
+            <label for="alu">ALU</label><br>
+            <input type="number" id="alu" name="alu" min="0" max="3" value="0">
+        </div>
+        <div class="input-field">
+            <label for="sh">SH</label><br>
+            <input type="number" id="sh" name="sh" min="0" max="3" value="0">
+        </div>
+        <div class="input-field">
+            <label for="mbr">MBR</label><br>
+            <input type="number" id="mbr" name="mbr" min="0" max="1" value="0">
+        </div>
+        <div class="input-field">
+            <label for="mar">MAR</label><br>
+            <input type="number" id="mar" name="mar" min="0" max="1" value="0">
+        </div>
+        <div class="input-field">
+            <label for="rd">RD</label><br>
+            <input type="number" id="rd" name="rd" min="0" max="1" value="0">
+        </div>
+        <div class="input-field">
+            <label for="wr">WR</label><br>
+            <input type="number" id="wr" name="wr" min="0" max="1" value="0">
+        </div>
+        <div class="input-field">
+            <label for="enc">ENC</label><br>
+            <input type="number" id="enc" name="enc" min="0" max="1" value="0">
+        </div>
+        <div class="input-field">
+            <label for="c">C</label><br>
+            <input type="number" id="c" name="c" min="0" max="15" value="0">
+        </div>
+        <div class="input-field">
+            <label for="b">B</label><br>
+            <input type="number" id="b" name="b" min="0" max="15" value="0">
+        </div>
+        <div class="input-field">
+            <label for="a">A</label><br>
+            <input type="number" id="a" name="a" min="0" max="15" value="0">
+        </div>
+        <div class="input-field">
+            <label for="addr">ADDR</label><br>
+            <input type="number" id="addr" name="addr" min="0" max="99" value="0">
+        </div>
+    </div>
+    <br>
+    <img>
+    <div style="display: flex; justify-content: space-around;">
+        <button id="reset-button" style="margin:10px;">Reset</button>
+        <div id="buttonbox">
+            <button id="file-button">Carregar Arquivo</button>
+            <button id="load-button">Carregar Entrada</button>
+            <button id="start-button">Executar</button>
+        </div>
+    </div>
+    <div class="tables">
+        <div class="memory">
+            <h2>Stack</h2>
+            <table id="memory-table">
+                <thead>
+                    <tr>
+                        <th>Address</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for addr in range(memory|length) %}
+                    <tr>
+                        <td>{{ addr }}</td>
+                        <td>{{ memory[addr] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="registers">
+            <h2>Registers</h2>
+            <table id="registers-table">
+                <thead>
+                    <tr>
+                        <th>Register</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reg, val in registers.items() %}
+                    <tr>
+                        <td>{{ reg }}</td>
+                        <td>{{ val }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+
+        <div class="instructions">
+            <div style="display: flex; justify-content: space-around;">
+                <h2>Instructions Memory </h2>
+                <h2>Próxima instrução (MPC): {{ mpc }}</h2>
+            </div>
+            <table id="instructions-table">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        {% for key in memoria_instructions[0].keys() %}
+                        <th>{{ key }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for instrucao in memoria_instructions %}
+                    <tr>
+                        <td>{{ loop.index0 }}</td>
+                        {% for value in instrucao.values() %}
+                        <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#load-button").click(function(){
+                $.ajax({
+                    url: "/store_instruction",
+                    method: "POST",
+                    data: {
+                        amux: $("#amux").val(),
+                        cond: $("#cond").val(),
+                        alu: $("#alu").val(),
+                        sh: $("#sh").val(),
+                        mbr: $("#mbr").val(),
+                        mar: $("#mar").val(),
+                        rd: $("#rd").val(),
+                        wr: $("#wr").val(),
+                        enc: $("#enc").val(),
+                        c: $("#c").val(),
+                        b: $("#b").val(),
+                        a: $("#a").val(),
+                        addr: $("#addr").val()
+                    },
+                    success: function(data){
+                        updateTables(data.memory, data.registers, data.memoria_instructions);
+                        location.reload();
+                    }
+                });
+            });
+
+            $("#reset-button").click(function(){
+                $.ajax({
+                    url: "/reset",
+                    success: function(data){
+                        updateTables(data.memory, data.registers, data.memoria_instructions);
+                        location.reload();
+                    }
+                });
+            });
+
+            $("#file-button").click(function(){
+                $.ajax({
+                    url: "/file",
+                    success: function(data){
+                        updateTables(data.memory, data.registers, data.memoria_instructions);
+                        location.reload();
+                    }
+                });
+            });
+
+            $("#start-button").click(function(){
+                $.ajax({
+                    url: "/start_instruction",
+                    method: "POST",
+                    success: function(data){
+                        updateTables(data.memory, data.registers, data.memoria_instructions);
+                        location.reload();
+                    }
+                });
+            });
+
+            function updateTables(memory, registers, memoria_instructions) {
+                var memTable = $("#memory-table tbody");
+                var regTable = $("#registers-table tbody");
+                var instTable = $("#instructions-table tbody");
+
+                memTable.empty();
+                regTable.empty();
+                instTable.empty();
+
+                $.each(memory, function(index, value){
+                    memTable.append("<tr><td>" + index + "</td><td>" + value + "</td></tr>");
+                });
+
+                $.each(registers, function(reg, value){
+                    regTable.append("<tr><td>" + reg + "</td><td>" + value + "</td></tr>");
+                });
+
+                $.each(memoria_instructions, function(index, instruction){
+                    var row = "<tr>";
+                    $.each(instruction, function(key, value){
+                        row += "<td>" + value + "</td>";
+                    });
+                    row += "</tr>";
+                    instTable.append(row);
+                });
+            }
+        });
+
+    </script>
+</body>
+</html>
+

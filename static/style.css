@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#buttonbox {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+#instruction-message {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.tables {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+.registers, .memory {
+    width: 45%;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.input-field {
+    margin: 10px;
+    text-align: center;
+}
+.input-field input {
+    width: 50px;
+}
