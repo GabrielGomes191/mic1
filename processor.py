@@ -32,7 +32,7 @@ class Processor:
             'Latch A': 0,
             'Latch B': 0
         }
-        self.memory = [0] * 10  # Memory with 16 addresses
+        self.memory = [0] * 10
         self.instruction_pointer = 0
         self.instructions = {
             'AMUX': 0,
@@ -134,8 +134,6 @@ class Processor:
             self.registers['Z'] = 1
         else:
             self.registers['Z'] = 0
-
-        print('Deslocador: ',self.registers['Deslocador'], 'N:', self.registers['N'])
 
         #COND: diz se vai ocorrer um desvio ou não
         if self.instructions['COND'] == 0:

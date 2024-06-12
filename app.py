@@ -10,7 +10,7 @@ def index():
 
 @app.route('/start_instruction', methods=['POST'])
 def start_instruction():
-    if len(processor.memoria_instructions) > 1 and processor.mpc < len(processor.memoria_instructions) - 1:
+    if len(processor.memoria_instructions) > 1 and processor.mpc < len(processor.memoria_instructions):
         instruction = processor.memoria_instructions[processor.mpc]
         processor.instructions.update(instruction)
 
@@ -19,7 +19,7 @@ def start_instruction():
         memory, registers = simulate_code(processor)
         return jsonify({'memory': memory, 'registers': registers})
     else:
-        return jsonify({''}), 400
+        return jsonify({'error': 'MPC insuficiente'}), 400
 
 @app.route('/reset')
 def reset():
