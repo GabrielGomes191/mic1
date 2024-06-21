@@ -14,4 +14,9 @@ o .json contém as microinstruções necessárias para rodar esse trecho de cód
 porém novas instruções podem ser adicionadas a vontade do operador
 
 
+Para rodar no docker, rode os seguintes comandos:
+
+`docker build -t mic1 .`
+
+`docker run -p 80:80 mic1`
 
