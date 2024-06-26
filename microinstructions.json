@@ -4,6 +4,9 @@
             "AMUX": 0,"COND": 0,"ALU": 2,"SH": 0,"MBR": 0,"MAR": 1,"RD": 1,"WR": 0,"ENC": 0,"C": 0,"B": 0,"A": 0,"ADDR": 0
         },
         {
+            "AMUX": 0,"COND": 0,"ALU": 0,"SH": 0,"MBR": 0,"MAR": 0,"RD": 1,"WR": 0,"ENC": 0,"C": 0,"B": 0,"A": 0,"ADDR": 0
+        },
+        {
             "AMUX": 1,"COND": 0,"ALU": 2,"SH": 0,"MBR": 0,"MAR": 0,"RD": 0,"WR": 0,"ENC": 1,"C": 1,"B": 0,"A": 0,"ADDR": 0
         },
         {
@@ -13,7 +16,7 @@
             "AMUX": 0,"COND": 0,"ALU": 2,"SH": 0,"MBR": 0,"MAR": 1,"RD": 1,"WR": 0,"ENC": 0,"C": 0,"B": 0,"A": 0,"ADDR": 0
         },
         {
-            "AMUX": 0,"COND": 0,"ALU": 0,"SH": 0,"MBR": 0,"MAR": 0,"RD": 0,"WR": 0,"ENC": 1,"C": 1,"B": 6,"A": 1,"ADDR": 0
+            "AMUX": 0,"COND": 0,"ALU": 0,"SH": 0,"MBR": 0,"MAR": 0,"RD": 1,"WR": 0,"ENC": 1,"C": 1,"B": 6,"A": 1,"ADDR": 0
         },
         {
             "AMUX": 1,"COND": 0,"ALU": 3,"SH": 0,"MBR": 0,"MAR": 0,"RD": 0,"WR": 0,"ENC": 1,"C": 10,"B": 0,"A": 0,"ADDR": 0
@@ -28,7 +31,7 @@
             "AMUX": 0,"COND": 0,"ALU": 2,"SH": 0,"MBR": 0,"MAR": 1,"RD": 1,"WR": 0,"ENC": 0,"C": 0,"B": 0,"A": 0,"ADDR": 0
         },
         {
-            "AMUX": 0,"COND": 0,"ALU": 3,"SH": 0,"MBR": 0,"MAR": 0,"RD": 0,"WR": 0,"ENC": 1,"C": 10,"B": 0,"A": 10,"ADDR": 0
+            "AMUX": 0,"COND": 0,"ALU": 3,"SH": 0,"MBR": 0,"MAR": 0,"RD": 1,"WR": 0,"ENC": 1,"C": 10,"B": 0,"A": 10,"ADDR": 0
         },
         {
             "AMUX": 1,"COND": 0,"ALU": 2,"SH": 2,"MBR": 0,"MAR": 0,"RD": 0,"WR": 0,"ENC": 1,"C": 11,"B": 0,"A": 0,"ADDR": 0
@@ -46,16 +49,19 @@
             "AMUX": 0,"COND": 0,"ALU": 0,"SH": 0,"MBR": 0,"MAR": 0,"RD": 0,"WR": 0,"ENC": 1,"C": 1,"B": 10,"A": 1,"ADDR": 0
         },
         {
-            "AMUX": 0,"COND": 0,"ALU": 2,"SH": 0,"MBR": 0,"MAR": 1,"RD": 1,"WR": 0,"ENC": 0,"C": 0,"B": 0,"A": 1,"ADDR": 0
+            "AMUX": 0,"COND": 0,"ALU": 2,"SH": 0,"MBR": 0,"MAR": 1,"RD": 1,"WR": 0,"ENC": 0,"C": 0,"B": 1,"A": 0,"ADDR": 0
         },
         {
-            "AMUX": 0,"COND": 0,"ALU": 3,"SH": 0,"MBR": 0,"MAR": 0,"RD": 0,"WR": 0,"ENC": 1,"C": 11,"B": 0,"A": 11,"ADDR": 0
+            "AMUX": 0,"COND": 0,"ALU": 3,"SH": 0,"MBR": 0,"MAR": 0,"RD": 1,"WR": 0,"ENC": 1,"C": 11,"B": 0,"A": 11,"ADDR": 0
         },
         {
             "AMUX": 1,"COND": 0,"ALU": 0,"SH": 0,"MBR": 0,"MAR": 0,"RD": 0,"WR": 0,"ENC": 1,"C": 1,"B": 6,"A": 0,"ADDR": 0
         },
         {
             "AMUX": 0,"COND": 0,"ALU": 0,"SH": 0,"MBR": 1,"MAR": 0,"RD": 0,"WR": 1,"ENC": 0,"C": 0,"B": 11,"A": 1,"ADDR": 0
+        },
+        {
+            "AMUX": 0,"COND": 0,"ALU": 0,"SH": 0,"MBR": 0,"MAR": 0,"RD": 0,"WR": 1,"ENC": 0,"C": 0,"B": 0,"A": 0,"ADDR": 0
         }
     ]
 }

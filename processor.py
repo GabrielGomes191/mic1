@@ -30,7 +30,9 @@ class Processor:
             'ALU': [0,0],
             'Deslocador': 0,
             'Latch A': 0,
-            'Latch B': 0
+            'Latch B': 0,
+            'N': 0,
+            'Z': 0
         }
         self.memory = [0] * 10
         self.instruction_pointer = 0
@@ -52,10 +54,10 @@ class Processor:
         self.memoria_instructions = [self.instructions.copy()]
         self.x = [randint(0,99) for i in range(0, 12)]
 
-        # Initial values in memory
         self.memory[1:11] = self.x
 
         self.mpc = 1
+        self.contagem_rd = 0
 
     def store_instruction(self, values):
         self.memoria_instructions.append(values)
@@ -187,21 +189,28 @@ class Processor:
             self.registers['MAR'] = self.registers['Latch B']
 
         #requisita leitura de memória
-        if self.instructions['RD'] == 0:
-            #nenhuma leitura
+        if self.instructions['RD'] != 0:
+            self.contagem_rd += 1
+            if self.contagem_rd == 2:
+                #salva o conteudo da memoria no mbr
+                self.registers['MBR'] = self.memory[self.registers['MAR']]
+                self.contagem_rd = 0
             pass
         else:
-            #salva o conteudo da memoria no mbr
-            self.registers['MBR'] = self.memory[self.registers['MAR']]
+            #nenhuma leitura
             pass
 
         #requisita escrita na memória
-        if self.instructions['WR'] == 0:
+        if self.instructions['WR'] != 0:
+            self.contagem_rd += 1
+            if self.contagem_rd == 2:
+                 #escreve o conteúdo de MBR na memória
+                self.memory[self.registers['MAR']] = self.registers['MBR']
+                self.contagem_rd = 0
+
+        else:
             #nenhuma escrita
             pass
-        else:
-            #escreve o conteúdo de MBR na memória
-            self.memory[self.registers['MAR']] = self.registers['MBR']
             
 
         #controla armazenamento na memória de rascunho
@@ -214,6 +223,7 @@ class Processor:
                 if r == self.instructions['C']:
                     self.registers[i] = self.registers['Deslocador']
         pass
+
     def update(self, instructions):
         self.instrucoes = instructions
 
