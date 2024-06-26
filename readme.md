@@ -20,3 +20,4 @@ Para rodar no docker, rode os seguintes comandos:
 
 `docker run -p 80:80 mic1`
 
+`ngrok http --domain=native-legible-martin.ngrok-free.app 80`
