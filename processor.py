@@ -36,7 +36,7 @@ class Processor:
         }
         self.memory = [0] * 10
         self.instruction_pointer = 0
-        self.instructions = {
+        self.instructions = { # input da microinstrução
             'AMUX': 0,
             'COND': 0,
             'ALU': 0,
@@ -51,8 +51,8 @@ class Processor:
             'A': 0,
             'ADDR': 0,
         }
-        self.memoria_instructions = [self.instructions.copy()]
-        self.x = [randint(0,99) for i in range(0, 12)]
+        self.memoria_instructions = [self.instructions.copy()] #mir
+        self.x = [randint(0,99) for i in range(0, 12)] #stack
 
         self.memory[1:11] = self.x
 
